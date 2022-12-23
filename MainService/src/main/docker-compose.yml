@@ -1,0 +1,39 @@
+services:
+
+  postgres:
+    container_name: postgres-course-registration
+    image: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1
+      POSTGRES_DB: postgres-course-registration
+      PGDATA: /data/postgres
+    volumes:
+      - postgres:/data/postgres
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+  rabbitMQ:
+    container_name: "rabbitmq-service"
+    image: rabbitmq:3.9.11-management-alpine
+    ports:
+      - "15672:15672"
+      - "35672:5672"
+#  pgadmin:
+#    container_name: pgadmin-security
+#    image: dpage/pgadmin4
+#    environment:
+#      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}
+#      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
+#      PGADMIN_CONFIG_SERVER_MODE: 'False'
+#    volumes:
+#      - pgadmin:/var/lib/pgadmin
+#    ports:
+#      - "5050:80"
+#    restart: unless-stopped
+
+
+
+volumes:
+  postgres:
+  pgadmin:
